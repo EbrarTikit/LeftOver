@@ -3,7 +3,7 @@
 ## App Description
 Food Leftover application prevents businesses from throwing away products at the end of the day. By bringing business owners and customers together in the application, food waste is prevented.
 
-##Technologies and Frameworks Used:
+## Technologies and Frameworks Used:
 - Kotlin
 - JetPack Compose
 - React
