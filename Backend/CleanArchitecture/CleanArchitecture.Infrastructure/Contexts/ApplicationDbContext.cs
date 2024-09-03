@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Reflection.Emit;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace CleanArchitecture.Infrastructure.Contexts
 {
@@ -22,8 +25,15 @@ namespace CleanArchitecture.Infrastructure.Contexts
             _authenticatedUser = authenticatedUser;
         }
 
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Cart> Baskets { get; set; }
+        public DbSet<CartItem> BasketItems { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Favourites> Favourites { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet <Restaurant> Restaurants { get; set; }
+
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -43,9 +53,10 @@ namespace CleanArchitecture.Infrastructure.Contexts
             }
             return base.SaveChangesAsync(cancellationToken);
         }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
-
+            //builder.Entity
             builder.Entity<ApplicationUser>(entity =>
             {
                 entity.ToTable(name: "User");
@@ -81,6 +92,14 @@ namespace CleanArchitecture.Infrastructure.Contexts
                 entity.ToTable("UserTokens");
             });
 
+            builder.Entity<Reservation>()
+        .HasOne(r => r.Restaurant) // Navigation property in Reservation entity
+        .WithMany() // Assuming Restaurant has a collection of Reservations
+        .HasForeignKey(r => r.RestaurantId) // Foreign key in Reservation entity
+        .OnDelete(DeleteBehavior.NoAction); // Prevent cascading delete
+
+           
+
             //All Decimals will have 18,6 Range
             foreach (var property in builder.Model.GetEntityTypes()
             .SelectMany(t => t.GetProperties())
@@ -89,6 +108,21 @@ namespace CleanArchitecture.Infrastructure.Contexts
                 property.SetColumnType("decimal(18,6)");
             }
             base.OnModelCreating(builder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // Configuration for design-time services
+                var configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+
+                var connectionString = configuration.GetConnectionString("DefaultConnection");
+                optionsBuilder.UseSqlServer(connectionString);
+            }
         }
     }
 }

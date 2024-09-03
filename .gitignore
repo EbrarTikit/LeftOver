@@ -474,3 +474,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+/Backend/CleanArchitecture/CleanArchitecture.Infrastructure/Repositories/CustomerRepositoryAsync.cs

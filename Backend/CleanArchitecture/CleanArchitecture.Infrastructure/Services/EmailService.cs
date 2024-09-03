@@ -9,7 +9,6 @@ using Microsoft.Extensions.Options;
 using MimeKit;
 using System.Threading.Tasks;
 
-
 namespace CleanArchitecture.Infrastructure.Services
 {
     public class EmailService : IEmailService
@@ -40,13 +39,36 @@ namespace CleanArchitecture.Infrastructure.Services
                 smtp.Authenticate(_mailSettings.SmtpUser, _mailSettings.SmtpPass);
                 await smtp.SendAsync(email);
                 smtp.Disconnect(true);
-                
             }
             catch (System.Exception ex)
             {
                 _logger.LogError(ex.Message, ex);
                 throw new ApiException(ex.Message);
             }
+        }
+
+        public async Task SendEmail(string to, string subject)
+        {
+            var emailRequest = new EmailRequest
+            {
+                To = to,
+                Subject = subject,
+                Body = string.Empty, // İçeriği burada belirleyebilirsiniz
+                From = _mailSettings.EmailFrom
+            };
+            await SendAsync(emailRequest);
+        }
+
+        public async Task SendMail(string from, string to, string subject)
+        {
+            var emailRequest = new EmailRequest
+            {
+                To = to,
+                Subject = subject,
+                Body = string.Empty, // İçeriği burada belirleyebilirsiniz
+                From = from
+            };
+            await SendAsync(emailRequest);
         }
     }
 }

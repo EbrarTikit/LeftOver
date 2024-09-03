@@ -1,0 +1,112 @@
+.own-a-business {
+    margin-top: 5rem;
+    padding: 3rem 5rem;
+    background-color: #74CADA;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 10rem;
+}
+
+.own {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.own h1 {
+    color: #fff;
+    margin-bottom: 0;
+}
+
+.own p  {
+    font-family: 'math' , sans-serif;
+    line-height: 1.7rem;
+    font-size: 1.1rem;
+}
+
+.own button {
+    text-decoration: none;
+    color: #ffffff;
+    border: none;
+    border-radius: 13px;
+    font-size: 1rem;
+    background-color: #0097B2;
+    padding: 23px 27px;
+    font-weight: bold;
+}
+
+.own button:hover {
+    background-color: #014c5a;
+    cursor: pointer;
+}
+
+.own-a-business .phone img {
+    width: 13rem;
+    margin-bottom: -10rem;
+}  
+
+
+.guideline {
+    padding: 1rem 5rem 4rem;
+}
+
+.guideline p {
+    font-family: 'math' , sans-serif;
+    line-height: 1.7rem;
+
+}
+
+.guideline h2 {
+    color: #014c5a;
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+.guideline ul li p {
+    padding-left: 1rem;
+}
+
+.guideline ul li h3{
+    color: #014c5a;
+}
+
+.faq {
+    padding: 1rem 5rem 7rem;
+}
+
+.faq h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    color: #014c5a;;
+}
+
+.faq-items ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10rem;
+    row-gap: 2rem;
+}
+
+.faq-items h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.faq-item div {
+    display: flex;
+    gap: 1rem;
+}   
+
+.question {
+    font-family: cursive, sans-serif;
+}
+
+.arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

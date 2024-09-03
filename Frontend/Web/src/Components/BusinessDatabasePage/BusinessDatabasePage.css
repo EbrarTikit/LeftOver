@@ -1,0 +1,74 @@
+.business-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-header {
+    text-align: center;
+    margin: 4rem auto 5rem auto;
+}
+
+.deleteaccimg , .reservationsimg{
+    width: 22%;
+    height: 66%;
+    object-fit: cover;
+
+}
+
+
+
+.accounts {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+
+.accounts span {
+    font-weight: 600;
+}
+
+/* .delaccdiv {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.reservationsbutton {
+    display: flex;
+    flex-direction: initial;
+} */
+
+.product-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    
+}
+
+.underitemsbuttons {
+    display: flex;
+    justify-content: center;
+    gap: 2.75rem;
+    margin: 4rem 0 6rem 0;
+    
+}
+
+.underitemsbuttons button {
+    background-color: #0097B2;
+    border: none;
+    padding: 22px 14px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.underitemsbuttons button:hover {
+    background-color: #014c5a;
+    cursor: pointer;
+}

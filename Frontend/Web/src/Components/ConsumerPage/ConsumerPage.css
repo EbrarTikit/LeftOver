@@ -1,0 +1,62 @@
+.how-it-works {
+    margin-top: 5rem;
+    padding: 3rem 5rem;
+    background-color: #74CADA;
+    display: flex;
+}
+
+.phone img {
+    width: 100%;
+}
+
+.phone-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.phone-right h1 {
+    color: #000;
+}
+
+.phone-right p {
+    font-size: 0.9rem;
+}
+
+.phone-right button {
+    background-color: #0097B2;
+    border: none;
+    padding: 22px 14px;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.phone-right button i {
+    margin-left: 2.7rem;
+}
+
+.phone-right button:hover {
+    background-color: #014c5a;
+    cursor: pointer;
+}
+
+.statistics {
+    display: flex;
+    justify-content: space-between;
+    margin: 5rem 6rem 8rem;
+}
+
+.users, .active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #0097B2;
+    font-size: 0.9rem;
+}
+
+.amount {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}

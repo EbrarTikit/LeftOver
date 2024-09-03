@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">LeftOver</string>
+    <string name="basket">LeftOver</string>
+    <string name="desired_store">LeftOver</string>
+    <string name="favourite">LeftOver</string>
+    <string name="filter">LeftOver</string>
+    <string name="home_page">LeftOver</string>
+    <string name="log_in">LeftOver</string>
+    <string name="profile">LeftOver</string>
+    <string name="reservations_details">LeftOver</string>
+    <string name="reservations">LeftOver</string>
+    <string name="restaurant">LeftOver</string>
+    <string name="sign_up">LeftOver</string>
+</resources>

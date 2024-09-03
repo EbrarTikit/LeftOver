@@ -98,11 +98,28 @@ namespace CleanArchitecture.Infrastructure
             services.AddTransient<IDateTimeService, DateTimeService>();
             services.AddTransient<IEmailService, EmailService>();
 
+            services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
+            services.AddTransient<IRestaurantRepositoryAsync, RestaurantRepositoryAsync>();
+
+            services.AddTransient<IItemRepositoryAsync, ItemRepositoryAsync>();
+
+            services.AddTransient<IAddressRepositoryAsync, AddressRepositoryAsync>();
+
+            services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
+            services.AddTransient<ICartRepositoryAsync, CartRepositoryAsync>();
+            services.AddTransient<IFavouritesRepositoryAsync, FavouritesRepositoryAsync>();
+            services.AddTransient<ICartItemRepositoryAsync, CartItemRepositoryAsync>();
+            services.AddTransient<IReservationRepositoryAsync, ReservationRepositoryAsync>();
+            services.AddTransient<ICustomerRepositoryAsync, CustomerRepositoryAsync>();
+
+            
+
+
 
             #region Repositories
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
-            services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
-            services.AddTransient<ICategoryRepositoryAsync, CategoryRepositoryAsync>();
+            //services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
+            //services.AddTransient<ICategoryRepositoryAsync, CategoryRepositoryAsync>();
             #endregion
         }
     }

@@ -1,0 +1,74 @@
+.main-header {
+    text-align: center;
+    margin: 1.6rem 0;
+}
+.menu {
+    width: 100%;
+}
+
+.form {
+    margin-bottom: 4rem;
+    margin-top: 3rem;
+}
+
+form input {
+    border-radius: 10px;
+    border: none;
+    padding: 1rem 0.8rem;
+    width: 80%;
+}
+
+.informations {
+    background-color: #74CADA;
+    padding: 2rem;
+    display: grid;
+    row-gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.address-info {
+    background-color: #74CADA;
+    margin-top: 1.5rem;
+    padding: 2rem;
+}
+
+.except-address {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 1.5rem;
+}
+
+.except-address input {
+    width: 60%;
+}
+
+.submit-button {
+    text-align: center;
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+}
+
+.submit-button button {
+    width: auto;
+    text-decoration: none;
+    color: #ffffff;
+    border: none;
+    border-radius: 13px;
+    background-color: #0097B2;
+    padding: 1rem 4.5rem;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.submit-button button:hover {
+    background-color: #014c5a;
+    cursor: pointer;
+}
+
+.error {
+    margin-left: 0.5rem;
+    color: firebrick;
+    font-style: italic;
+}
+

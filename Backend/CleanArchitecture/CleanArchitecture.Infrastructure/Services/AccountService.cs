@@ -1,8 +1,10 @@
-﻿using CleanArchitecture.Core.DTOs.Account;
+﻿ using CleanArchitecture.Core.DTOs.Account;
 using CleanArchitecture.Core.DTOs.Email;
+using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Enums;
 using CleanArchitecture.Core.Exceptions;
 using CleanArchitecture.Core.Interfaces;
+using CleanArchitecture.Core.Interfaces.Repositories;
 using CleanArchitecture.Core.Settings;
 using CleanArchitecture.Core.Wrappers;
 using CleanArchitecture.Infrastructure.Helpers;
@@ -30,12 +32,14 @@ namespace CleanArchitecture.Infrastructure.Services
         private readonly IEmailService _emailService;
         private readonly JWTSettings _jwtSettings;
         private readonly IDateTimeService _dateTimeService;
+        private readonly ICustomerRepositoryAsync _customerRepositoryAsync;
         public AccountService(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             IOptions<JWTSettings> jwtSettings,
             IDateTimeService dateTimeService,
             SignInManager<ApplicationUser> signInManager,
-            IEmailService emailService)
+            IEmailService emailService,
+            ICustomerRepositoryAsync customerRepositoryAsync)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -43,6 +47,7 @@ namespace CleanArchitecture.Infrastructure.Services
             _dateTimeService = dateTimeService;
             _signInManager = signInManager;
             this._emailService = emailService;
+            _customerRepositoryAsync = customerRepositoryAsync;
         }
 
         public async Task<Response<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request, string ipAddress)
@@ -57,10 +62,10 @@ namespace CleanArchitecture.Infrastructure.Services
             {
                 throw new ApiException($"Invalid Credentials for '{request.Email}'.");
             }
-            if (!user.EmailConfirmed)
+           /* if (!user.EmailConfirmed)
             {
                 throw new ApiException($"Account Not Confirmed for '{request.Email}'.");
-            }
+            }*/
             JwtSecurityToken jwtSecurityToken = await GenerateJWToken(user);
             AuthenticationResponse response = new AuthenticationResponse();
             response.Id = user.Id;
@@ -95,21 +100,38 @@ namespace CleanArchitecture.Infrastructure.Services
                 var result = await _userManager.CreateAsync(user, request.Password);
                 if (result.Succeeded)
                 {
+                    await CreateUser(user);
                     await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
-                    var verificationUri = await SendVerificationEmail(user, origin);
+                    //var verificationUri = await SendVerificationEmail(user, origin);
+                    //await _emailService.SendEmail(user.Email, verificationUri);
                     //TODO: Attach Email Service here and configure it via appsettings
                     //await _emailService.SendAsync(new Core.DTOs.Email.EmailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });
-                    return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
+                    return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL");
                 }
                 else
                 {
-                    throw new ApiException($"{result.Errors}");
+                    /*throw new ApiException($"{result.Errors}");*/
+                    var errorMessages = string.Join("; ", result.Errors.Select(e => e.Description));
+                    throw new ApiException($"User creation failed: {errorMessages}");
                 }
             }
             else
             {
                 throw new ApiException($"Email {request.Email } is already registered.");
             }
+        }
+
+        public async Task CreateUser(ApplicationUser user)
+        {
+            var userDatabase = new Customer
+            {
+                CId = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName= user.UserName,
+                Email = user.Email,
+            };
+            await _customerRepositoryAsync.AddAsync(userDatabase);
         }
 
         private async Task<JwtSecurityToken> GenerateJWToken(ApplicationUser user)
@@ -215,6 +237,8 @@ namespace CleanArchitecture.Infrastructure.Services
             await _emailService.SendAsync(emailRequest);
         }
 
+
+
         public async Task<Response<string>> ResetPassword(ResetPasswordRequest model)
         {
             var account = await _userManager.FindByEmailAsync(model.Email);
@@ -229,5 +253,7 @@ namespace CleanArchitecture.Infrastructure.Services
                 throw new ApiException($"Error occured while reseting the password.");
             }
         }
+
+
     }
 }

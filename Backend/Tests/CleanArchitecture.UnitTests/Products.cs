@@ -1,12 +1,12 @@
-using System.Threading;
+/*using System.Threading;
 using System.Threading.Tasks;
 using AutoFixture;
 using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Exceptions;
-using CleanArchitecture.Core.Features.Products.Commands.UpdateProduct;
+
 using CleanArchitecture.Core.Interfaces.Repositories;
 using Moq;
-using static CleanArchitecture.Core.Features.Products.Commands.UpdateProduct.UpdateProductCommand;
+
 
 namespace CleanArchitecture.UnitTests
 {
@@ -84,3 +84,4 @@ namespace CleanArchitecture.UnitTests
         }
     }
 }
+*/

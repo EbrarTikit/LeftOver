@@ -15,4 +15,9 @@
     <PackageReference Include="System.Text.Json" Version="4.7.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\ReservationItem\Query\GetAllReservationItem\" />
+    <Folder Include="Features\ReservationItem\Query\GetReservationItemQuery\" />
+  </ItemGroup>
+
 </Project>

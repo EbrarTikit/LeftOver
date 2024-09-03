@@ -1,0 +1,16 @@
+.basicheader {
+    height: 90px;
+    width: 100%;
+    overflow: hidden;
+    background-color: #F1EFE7;
+}
+
+.logo {
+    padding-top: 0.5%;
+    height: 100%; 
+    width: 10%;
+    object-fit: cover; 
+}
+
+
+  

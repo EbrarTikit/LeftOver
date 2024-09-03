@@ -1,0 +1,71 @@
+.header {
+    height: 90px;
+    width: 100%;
+    overflow: hidden;
+    background-color: #F1EFE7;
+}
+
+.logo {
+    width: 6rem
+}
+
+.logo img {
+    width: 100%;
+}
+
+.consumer, .business {
+    text-decoration: none;
+    color: #0097B2;
+    
+}
+
+.consumer:hover, .business:hover {
+    color: #014c5a;
+}
+
+.exceptLogo {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.leftdiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    font-size: 1rem;
+    font-weight: bolder;
+    margin-left: 5rem;
+}
+
+.rightdiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-right: 2rem;
+}
+
+.rightdiv button {
+    text-decoration: none;
+    color: #ffffff;
+    border: none;
+    border-radius: 13px;
+    background-color: #0097B2;
+    padding: 16px 30px;
+    font-weight: bold;
+}
+
+.rightdiv button:hover {
+    background-color: #014c5a;
+    cursor: pointer;
+}
+
+.profileIcon {
+    display: flex;
+    justify-content: end;
+}
+
+  
